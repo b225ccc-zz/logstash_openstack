@@ -8,10 +8,13 @@ This assumes you already have a logstash server.  [This](https://www.digitalocea
 ### agents
 install logstash-forwarder:
 
-* `wget https://download.elastic.co/logstash-forwarder/binaries/logstash-forwarder_0.4.0_amd64.deb`
-* `sudo dpkg -i logstash-forwarder_0.4.0_amd64.deb`
-* `sudo apt-get install -f`
+* `echo 'deb http://packages.elasticsearch.org/logstashforwarder/debian stable main' | sudo tee /etc/apt/sources.list.d/logstashforwarder.list`
+* `wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -`
+* `sudo apt-get update`
+* `sudo apt-get install logstash-forwarder`
+
 
 install logstash-forwarder.conf and start the agent:
 
+* `curl -sO https://raw.githubusercontent.com/b225ccc/logstash_openstack/master/logstash-forwarder.conf`
 * `/opt/logstash-forwarder/bin/logstash-forwarder -config logstash-forwarder.conf`
